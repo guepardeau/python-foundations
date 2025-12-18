@@ -7,10 +7,16 @@ print(" ")
 while True:
     while True:
         new_item = str(input("Enter Item: ").lower())
-        if new_item.isalpha or new_item.isspace(): 
-            break
+        valid_input = True
+        for letter in new_item:
+            if not (letter.isalpha() or letter.isspace()):
+                print(("ERROR: Item must be Alphabetical (e.g. Apples)"))
+                valid_input = False
+                break
+        if valid_input == False:
+            continue
         else:
-            print(("ERROR: Item must be Alphabetical (e.g. Apples)"))
+            break
 
     while True:
         try:
