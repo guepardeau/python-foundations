@@ -42,11 +42,16 @@ while True:
 
     total = unit_price * qty
 
-    basket[new_item] = {
-        "unit_price":unit_price,
-        "quantity": qty,
-        "total": total
-    }
+    if new_item in basket:
+        basket[new_item]["quantity"] += qty
+        basket[new_item]["total"] += total
+    else:
+        basket[new_item] = {
+            "unit_price": unit_price,
+            "quantity": qty,
+            "total": total
+        }
+        
     end_shopping = None
 
     end_shopping = input("Would you like to add another item? (Y/N): ").upper()
