@@ -1,4 +1,5 @@
 basket = {}
+should_continue = True
 
 print("YOUR SHOPPING CART")
 print(" ")
@@ -37,21 +38,27 @@ while True:
         "price":price,
         "quantity": qty
     }
+    end_shopping = None
 
-    for item in basket:
+    end_shopping = input("Would you like to add another item? (Y/N): ").upper()
+    while True:
+        if end_shopping == "Y" or end_shopping == "YES":
+            break
+        elif end_shopping == "N" or end_shopping == "NO":
+            should_continue = False
+            break
+        else:
+            end_shopping = input("Please choose (Y/N):" ).upper()
+            continue
+    
+    if should_continue:
+        continue
+    else:
+        break
+
+for item in basket:
         print(item.capitalize(), end=" ")
         print(basket[item]["price"], end= " ")
         print(basket[item]["quantity"])
-
-
-    end_shopping = input("Would you like to add another new_item? (Y/N): ").upper()
-    if end_shopping == "Y":
-        continue
-    elif end_shopping == "N":
-        break
-    else:
-        print("ERROR: Please choose Y/N: ")
-
-print(basket)
 
 
