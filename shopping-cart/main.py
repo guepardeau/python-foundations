@@ -1,21 +1,21 @@
 basket = {}
 should_continue = True
-
-print("YOUR SHOPPING CART")
+print(" ")
+print("\033[4mYOUR SHOPPING CART\033[0m")
 print(" ")
 
 while True:
     while True:
         new_item = str(input("Enter Item: ").lower())
-        if new_item.isalpha():
+        if new_item.isalpha or new_item.isspace(): 
             break
         else:
             print(("ERROR: Item must be Alphabetical (e.g. Apples)"))
 
     while True:
         try:
-            price = float(input("Enter Item Price:"))
-            if price > 0:
+            unit_price = float(input("Enter Item Price:"))
+            if unit_price > 0:
                 break
             else:
                 print("ERROR: Price must be greater than 0.") 
@@ -34,9 +34,12 @@ while True:
         except ValueError:
             print("ERROR: Quantity must be an integer (e.g. 4 for 4 apples): ")
 
+    total = unit_price * qty
+
     basket[new_item] = {
-        "price":price,
-        "quantity": qty
+        "unit_price":unit_price,
+        "quantity": qty,
+        "total": total
     }
     end_shopping = None
 
@@ -56,9 +59,26 @@ while True:
     else:
         break
 
-for item in basket:
-        print(item.capitalize(), end=" ")
-        print(basket[item]["price"], end= " ")
-        print(basket[item]["quantity"])
 
+print(" ")
+print(f"{'ITEM':<25} {'PRICE':^7} {'QTY':^6} {'TOTAL':>9}")
+print("-" * 50)
+
+for item in basket:
+    column_one = item.capitalize()
+    column_two = basket[item]["unit_price"]
+    column_three = basket[item]["quantity"]
+    column_four = basket[item]["total"]
+
+    print(f"{column_one:<25}", end= " ")
+    print(f"{column_two:>6.2f}", end= " ")
+    print(f"{column_three:>5}", end= " ")
+    print(f"{column_four:>11.2f}")
+
+end_price = 0.0 
+
+for item in basket:
+    end_price = end_price + basket[item]["total"] 
+print("-" * 50)
+print(f"{'TOTAL':<42} {'£':}{end_price:>6.2f}")
 
