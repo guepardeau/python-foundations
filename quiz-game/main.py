@@ -1,5 +1,5 @@
 valid = None
-
+score = 0
 def get_input(user_input):
     user_input = input("Please choose an Answer (A, B, C or D): ").upper()
     return user_input
@@ -21,12 +21,12 @@ questions = ("What is the capital of Japan?",
              "Which language is primarily used for Data Science?")
 
 options = (("Tokyo", "Kyoto", "Nagoya", "Osaka"),
-           ("Earth", "Mars", "Jupiter", "Venus"), 
+           ("Earth", "Jupiter", "Venus", "Mars"), 
            ("George Orwell", "Aldous Huxley", "J.K. Rowling", "Ernest Hemingway"),
-           ("56", "63", "72", "49"),
-           ("Python", "HTML", "CSS", "Bash"))
+           ("56","72", "63", "49"),
+           ("HTML", "CSS", "Bash", "Python"))
 
-answers = ("Tokyo", "Mars", "George Orwell", "63", "Python")
+answers = ("A", "D", "A", "C", "D")
 
 i = 0
 guesses = []
@@ -48,7 +48,9 @@ for question in questions:
     guesses.append(user_input)
     i += 1
 
-print(guesses)
+for i in range(len(guesses)):
+    if guesses[i] == answers [i]:
+        score += 1
 
-score = 0
-question_num = 0
+print(f"You got {score}/{len(questions)}!")
+ 
