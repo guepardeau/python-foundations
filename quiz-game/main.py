@@ -29,14 +29,20 @@ options = (("Tokyo", "Kyoto", "Nagoya", "Osaka"),
 answers = ("A", "D", "A", "C", "D")
 
 i = 0
+x = 0
 guesses = []
 user_input = None
+letters = ["A", "B", "C", "D"]
 
 for question in questions:
+    x = 0
     print()
     print(question)
     print()
-    print(options[i])
+    question_num = options[i]
+    for num in question_num:
+        print(f"{letters[x]}) {num}") 
+        x += 1 
     print()
     while True:
         user_input = get_input(user_input)
