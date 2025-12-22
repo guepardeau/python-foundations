@@ -7,7 +7,7 @@ resume = None
 
 def add_task(title, status):
     title = input("Please enter a new task: ")
-    status = "In Progress"
+    status = "IN PROGRESS"
     return title, status
 
 def start_stop(prompt_resume, resume):
@@ -25,12 +25,22 @@ def start_stop(prompt_resume, resume):
         return resume
 
 while True:
-    tasks[task_id] = add_task(title,status)
+    title, status = add_task(title,status)
+    tasks[task_id] = {
+        "title": title,
+        "status": status
+    }
     task_id += 1
     resume = start_stop(prompt_resume,resume)
     if resume == True:
         continue
     elif resume == False:
         break
-    
-print(tasks)
+
+print()
+
+for task in tasks:
+    print(tasks[task]["title"], "-", tasks[task]["status"])
+
+print()
+
