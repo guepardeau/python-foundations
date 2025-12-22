@@ -40,7 +40,7 @@ while True:
 print()
 
 for task in tasks:
-    print(tasks[task]["title"], "-", tasks[task]["status"])
+    print((f"{task + 1})"), tasks[task]["title"],"//", "Status:", tasks[task]["status"])
 
 print()
 
